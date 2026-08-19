@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "simind-pipeline"
+version = "0.1.0"
+description = "SIMIND Monte Carlo SPECT simulation + PyTomography reconstruction pipeline for multi-isotope, multi-scanner studies on HPC/SLURM"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+    { name = "Yazdan Salimi", email = "salimiyazdan@gmail.com" }
+]
+license = { text = "MIT" }
+dependencies = [
+    "numpy",
+    "SimpleITK",
+    "natsort",
+    "tqdm",
+    "torch",
+    "pytomography",
+]
+
+[project.urls]
+Repository = "https://github.com/YOUR-USERNAME/simind-pipeline"
+
+[tool.setuptools]
+py-modules = ["simind_yazdan"]
