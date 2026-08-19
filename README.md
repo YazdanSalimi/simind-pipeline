@@ -11,7 +11,7 @@ view counts × isotopes (Lu-177, Ac-225, Tc-99m) × resample spacings.
 - **Every reconstruction algorithm PyTomography ships is supported**: OSEM,
   MLEM, OSMAPOSL, BSREM, RBIEM, RBIMAP, SART, and FBP, plus relative-difference
   and quadratic priors — selected with a single `ALGORITHM`/`PRIOR_TYPE`
-  setting, no code changes required.
+  setting, no code changes required. 
 - **Multiple scanners and multiple isotope emission peaks can be simulated and
   reconstructed together in one run.** `reconstruct_all` takes
   `activity_mbq`/`time_per_proj_s` as a **plain number or a dict keyed by
