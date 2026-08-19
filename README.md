@@ -3,7 +3,7 @@
 Monte Carlo SPECT simulation ([SIMIND](https://simind.blogg.lu.se/)) + quantitative
 reconstruction ([PyTomography](https://github.com/PyTomography/PyTomography)) for
 generating large, realistic, **multi-isotope, multi-scanner, multi-view-count**
-synthetic SPECT datasets from real PET/CT-derived phantoms.
+synthetic SPECT datasets from real PET/CT images or any computational phantom.
 
 Built for batches spanning hundreds of patients × multiple scanner models ×
 view counts × isotopes (Lu-177, Ac-225, Tc-99m) × resample spacings.
@@ -34,7 +34,7 @@ view counts × isotopes (Lu-177, Ac-225, Tc-99m) × resample spacings.
 
 | Stage | Script | What it does |
 |---|---|---|
-| **Build** | `prepare-simulation.py` | Resamples PET/CT to each target spacing, then builds every scanner × view × isotope combo's SIMIND input files (`.smc`/`.dmi`/`.smi`/`.win`) + a `run_all.sh` per combo. Two-phase, multiprocessing-parallel (resample once per patient×spacing, reuse across every combo). |
+| **Build** | `prepare-simulation.py` | Resamples PET/CT or a computational phantom with added activities to each target spacing, then builds every scanner × view × isotope combo's SIMIND input files (`.smc`/`.dmi`/`.smi`/`.win`) + a `run_all.sh` per combo. Two-phase, multiprocessing-parallel (resample once per patient×spacing, reuse across every combo). It supports multi bed data preparation with desired overlap between beds. those beds will be stiched together during reconstruction. |
 | **Core library** | `simind_yazdan.py` | The engine everything else calls into: `prepare_simind_input`, `reconstruct`, `reconstruct_all`, isotope-aware peak detection, multi-bed stitching, origin/geometry bookkeeping. One self-contained file, pip-installable. |
 | **Reconstruct** | `reconstruct-simulations.py` | Local reconstruction pass: scans a tree of finished SIMIND builds, reconstructs every peak PyTomography needs, skips anything already done with the same settings. |
 
@@ -59,7 +59,7 @@ works anywhere.
 **SIMIND itself is not on PyPI** — it's a separate, license-gated Fortran binary
 from [Lund University](https://simind.blogg.lu.se/). Install it yourself and make
 sure `simind` (and `simind_mpi` if you want MPI-parallel simulation) is on `PATH`
-before running anything here.
+before running anything here. this is tested with version 9. 
 
 `prepare-simulation.py` isn't meant to be imported — it's a **copy, edit the
 config block at the top, run** tool. Copy it into your working directory and
@@ -88,7 +88,7 @@ python reconstruct-simulations.py
 - **Resampling is done once, reused everywhere.** Each patient/spacing
   combination is resampled a single time and reused across every scanner ×
   view × isotope combo built from it, instead of repeating the resample per
-  combo.
+  combo. the default interpolation is linear, you can change it to nearest for the computational phantom and synthetic lesions in a real image. 
 
 ## Requirements
 
