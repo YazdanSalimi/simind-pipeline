@@ -63,7 +63,7 @@ before running anything here. this is tested with version 9.
 
 `prepare-simulation.py` isn't meant to be imported — it's a **copy, edit the
 config block at the top, run** tool. Copy it into your working directory and
-edit the paths/settings for your own patients/scanners/isotopes.
+edit the paths/settings for your own patients/scanners/isotopes. Please check the scanner description and charastristics before running. 
 
 ## Quickstart
 
