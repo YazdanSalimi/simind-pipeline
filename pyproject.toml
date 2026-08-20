@@ -22,7 +22,7 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/YOUR-USERNAME/simind-pipeline"
+Repository = "https://github.com/YazdanSalimi/simind-pipeline"
 
 [tool.setuptools]
 py-modules = ["simind_yazdan"]
