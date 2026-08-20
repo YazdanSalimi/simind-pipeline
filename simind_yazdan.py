@@ -580,7 +580,7 @@ def build_simind_lu177(
     template_smc  : any valid v9 .smc (e.g. the shipped simind.smc); used as base.
     Returns BuildResult with one command per (segment x photopeak).
 
-    Writes a JSON provenance log to workdir\simulation-debug.json (path also
+    Writes a JSON provenance log to workdir/simulation-debug.json (path also
     returned in BuildResult.log_file) recording every argument and every
     index/flag written, plus an owner/date record.
     """
